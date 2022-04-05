@@ -70,11 +70,11 @@ def get_mnist(location="./", batch_size=64, labels_per_class=100):
         return sampler
 
     # Dataloaders for MNIST
-    labelled = torch.utils.data.DataLoader(mnist_train, batch_size=batch_size, num_workers=2, pin_memory=cuda,
+    labelled = torch.utils.data.DataLoader(mnist_train, batch_size=batch_size,
                                            sampler=get_sampler(mnist_train.train_labels.numpy(), labels_per_class))
-    unlabelled = torch.utils.data.DataLoader(mnist_train, batch_size=batch_size, num_workers=2, pin_memory=cuda,
+    unlabelled = torch.utils.data.DataLoader(mnist_train, batch_size=batch_size,
                                              sampler=get_sampler(mnist_train.train_labels.numpy()))
-    validation = torch.utils.data.DataLoader(mnist_valid, batch_size=batch_size, num_workers=2, pin_memory=cuda,
+    validation = torch.utils.data.DataLoader(mnist_valid, batch_size=batch_size,
                                              sampler=get_sampler(mnist_valid.test_labels.numpy()))
 
     return labelled, unlabelled, validation
